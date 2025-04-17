@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option go_package = "github.com/saket6198/common/orders";
+
+service OrderService {
+    rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse) {}
+
+}
+
+message Order {
+    int32 orderId = 1;
+    int32 customerId = 2;
+    int32 productId = 3;
+    int32 quantity = 4;
+}
+
+message CreateOrderRequest {
+    int32 customerId = 1;
+    int32 productId = 2;
+    int32 quantity = 3;
+}
+
+message CreateOrderResponse {
+    string status = 1;
+}
+
+message GetOrderRequest {
+    int32 customerId = 1;
+}
+
+message GetOrderResponse {
+    repeated Order orders = 1; // this is a slice of orders of type Order
+}
